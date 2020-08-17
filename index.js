@@ -19,23 +19,21 @@ const questions = [
 function writeToFile(fileName, dataArray) {
     // Check if file exist !
 
-    for (var i=1;i<11;i++) {
-        var data = dataArray[i];
-        fs.appendFile(fileName, data + '\n\n', function(err) {
-            if (err) {
-                console.log(err);
-                }
-        });
-    }
+    fs.appendFile(fileName, dataArray + '\n\n', function(err) {
+        if (err) {
+            console.log(err);
+            }
+    });
     console.log(`Successfully Generated file at ${fileName}`);
 }
+    
 
 // function to initialize program
 function init() {
     inquirer
     .prompt(questions)
     .then(function(response) {
-        console.log(response);
+        console.log(`Your response was ${response}`);
 
         //Markdown called
 
@@ -56,7 +54,6 @@ function init() {
                 }
             })
         }
-
         writeToFile('./README/README.md', data);
 });
 }
