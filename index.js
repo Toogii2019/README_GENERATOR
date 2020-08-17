@@ -33,7 +33,7 @@ function init() {
     inquirer
     .prompt(questions)
     .then(function(response) {
-        console.log(`Your response was ${response}`);
+        console.log(`Your response was ${JSON.stringify(response)}`);
 
         //Markdown called
 
@@ -47,9 +47,12 @@ function init() {
 
 
             fs.mkdir("./README", function(err) {
-                if (err.code === "EEXIST") {
-                return;
-                } else {
+                if (err) {
+                    if (err.code === "EEXIST") {
+                    return;
+                    } 
+                }
+                else {
                 console.log("New directory successfully created.")
                 }
             })
